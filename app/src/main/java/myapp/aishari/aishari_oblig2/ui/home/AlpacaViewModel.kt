@@ -57,32 +57,6 @@ class AlpacaViewModel : ViewModel() {
         }
     }
 
-    fun getVotesD3() {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                _votesD3.emit(AlpacaUiState.Loading)
-                DataSourceImp().getVotesD3().collect {
-                    Log.e("TAG", "getVotesD3: " + it)
-                    if (it != null)
-                        _votesD3.emit(AlpacaUiState.Successful(it))
-                    else
-                        _votesD3.emit(AlpacaUiState.Error("Error Happened"))
-
-                }
-            } catch (e: IOException) {
-                e.printStackTrace()
-                _votesD3.emit(AlpacaUiState.Error(e.message.toString()))
-
-            } catch (e: HttpException) {
-                e.printStackTrace()
-                _votesD3.emit(AlpacaUiState.Error(e.message.toString()))
-            } catch (e: Exception) {
-                e.printStackTrace()
-                _votesD3.emit(AlpacaUiState.Error(e.message.toString()))
-            }
-        }
-    }
-
     fun getVotes(path: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {

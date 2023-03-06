@@ -259,8 +259,3 @@ fun Indicator(
 }
 
 
-@Composable
-fun PartyItem(modifier: Modifier, item: AlpacaParty, text: String? = null) {
-
-
-}
